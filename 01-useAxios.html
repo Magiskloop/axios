@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link href="./src/input.css" rel="stylesheet" />
+        <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.7.2/axios.js"></script>
+    </head>
+    <body>
+        <div class="flex">
+            <h2>基本使用</h2>
+            <button>发送get请求</button>
+            <button>发送post请求</button>
+            <button>发送put请求</button>
+            <button>发送delete请求</button>
+        </div>
+
+        <script>
+            // import axios from "axios";
+            const btns = document.querySelectorAll("button");
+            btns[0].onclick = () => {
+                // 发送 AJAX 请求
+                axios({
+                    //请求类型
+                    method: "GET",
+                    // URl
+                    url: "http://localhost:3000/post/1",
+                }).then((response) => {
+                    console.log(response);
+                });
+            };
+            btns[1].onclick = () => {
+                // 发送 AJAX 请求
+                axios({
+                    //请求类型
+                    method: "POST",
+                    // URl
+                    url: "http://localhost:3000/post",
+                    // 请求体
+                    data: {
+                        title: "nihao",
+                        author: "zq",
+                    },
+                }).then((response) => {
+                    console.log(response);
+                });
+            };
+            btns[2].onclick = () => {
+                // 发送 AJAX 请求
+                axios({
+                    //请求类型
+                    method: "PUT",
+                    // URl
+                    url: "http://localhost:3000/post/1",
+                    // 请求体
+                    data: {
+                        title: "woainissssss",
+                        author: "zq",
+                    },
+                }).then((response) => {
+                    console.log(response);
+                });
+            };
+            btns[3].onclick = () => {
+                // 发送 AJAX 请求
+                axios({
+                    //请求类型
+                    method: "DELETE",
+                    // URl
+                    url: "http://localhost:3000/post/fd73",
+                }).then((response) => {
+                    console.log(response);
+                });
+            };
+        </script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <link href="./src/input.css" rel="stylesheet" /> -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.7.2/axios.js"></script>
+    </head>
+    <body>
+        <div class="flex">
+            <h2>基本使用</h2>
+            <button type="button">发送get请求</button>
+            <button type="button">发送post请求</button>
+        </div>
+
+        <script>
+            // import axios from "axios";
+            const btns = document.querySelectorAll("button");
+
+            // 创建实例对象 https://api.apiopen.top/getJoke
+            const duanzi = axios.create({
+                baseUrl: "http://localhost/:3000",
+                timeout: 2000,
+            });
+
+            console.log(duanzi);
+            duanzi({
+                url: "/post",
+            }).then((res) => {
+                console.log(res);
+            });
+        </script>
+    </body>
+</html>

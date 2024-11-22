@@ -1,0 +1,45 @@
+<!-- 拦截器：请求拦截器和响应拦截器 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <link href="./src/input.css" rel="stylesheet" /> -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.7.2/axios.js"></script>
+    </head>
+    <body>
+        <div class="flex">
+            <h2>基本使用</h2>
+            <button type="button">发送get请求</button>
+            <button type="button">取消请求</button>
+        </div>
+
+        <script>
+            const btns = document.querySelectorAll("button");
+
+            //
+            let cancel = null;
+            btns[0].onclick = () => {
+                if (cancel !== null) {
+                    cancel(); // 取消上一次的请求
+                }
+                axios({
+                    method: "GET",
+                    url: "http://localhost:3000/post",
+                    // 添加配置对象的属性
+                    cancelToken: new axios.CancelToken((c) => {
+                        cancel = c;
+                    }),
+                }).then((res) => {
+                    console.log(res);
+                    cancel = null;
+                });
+            };
+            btns[1].onclick = () => {
+                // 取消请求
+                cancel();
+            };
+        </script>
+    </body>
+</html>
